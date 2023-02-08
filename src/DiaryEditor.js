@@ -1,4 +1,4 @@
-//작성자(input), 일기 본문(textarea), 감정점수(select), 저장하기(button)
+//작성자(input), 일기 본문(textarea), 감정점수(select), 저장하기(button)의 기본 폼
 import { useState, useRef } from "react";
 
 const DiaryEditor = ({ onCreate }) => {

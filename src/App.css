@@ -42,7 +42,7 @@
 .DiaryList { border:1px solid #aaa; padding:20px; margin:20px 0 0 0; }
 .DiaryList h2{text-align: center;}
 /* item */
-.DiaryItem { background-color:gray;margin:0 0 10px 0;padding:20px; }
+.DiaryItem { border:1px solid #aaa;margin:0 0 10px 0;padding:20px; }
 .DiaryItem .info { border-bottom:1px solid #aaa;margin:0 0 10px 0;padding:0 0 10px 0;}
 .DiaryItem .date { color:#aaa; }
 .DiaryItem .content { font-weight:600;margin:30px 0; }

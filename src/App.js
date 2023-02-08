@@ -28,10 +28,22 @@ function App() {
     const newDiaryList = data.filter((it) => it.id !== targetId);
     setData(newDiaryList);
   }; //onDelete
+
+  //수정
+  const onEdit = (targetId, newContent) => {
+    //새로운 데이터로 수정
+    setData(
+      data.map(
+        (it) =>
+          it.id === targetId ? { ...it, content: newContent } : { ...it }
+        //수정된 배열로 교체
+      )
+    );
+  }; //onEdit end
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} diaryItem={onDelete} />
+      <DiaryList diaryList={data} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );
 }
