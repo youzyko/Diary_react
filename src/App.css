@@ -1,0 +1,48 @@
+/* .App {margin:0 auto;}
+.DiaryEditor { border:1px solid #e5e5e5; text-align:center; padding: 20px; }
+
+.DiaryEditor input, .DiaryEditor textarea { margin:0 0 20px 0; padding:10px; width:500px; }
+.DiaryEditor textarea { width:500px; height:150px; }
+.DiaryEditor select { margin:0 0 20px 0; padding:10px; width:500px; }
+.DiaryEditor button { cursor:pointer; padding:10px; width:500px; } */
+.App{
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid gray;
+}
+.DiaryEditor h2{
+  text-align: center;
+}
+.DiaryEditor input,.DiaryEditor textarea{
+  width: 500px;
+  height: 30px;
+  margin-left: 250px;
+  margin-bottom: 30px;
+}
+.DiaryEditor textarea{
+  height: 150px;
+  resize: none;
+  
+}
+.DiaryEditor span{
+  display: block;
+ /*  background-color: gray; */
+  text-align: center;
+  margin-bottom: 10px;
+}
+.DiaryEditor select {  margin-left: 250px; padding:10px; width:500px; }
+.DiaryEditor button{
+  display: block;
+  margin-left: 450px;
+  margin-top: 10px;
+}
+
+/* List */
+.DiaryList { border:1px solid #aaa; padding:20px; margin:20px 0 0 0; }
+.DiaryList h2{text-align: center;}
+/* item */
+.DiaryItem { background-color:gray;margin:0 0 10px 0;padding:20px; }
+.DiaryItem .info { border-bottom:1px solid #aaa;margin:0 0 10px 0;padding:0 0 10px 0;}
+.DiaryItem .date { color:#aaa; }
+.DiaryItem .content { font-weight:600;margin:30px 0; }
