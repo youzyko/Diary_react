@@ -1,26 +1,58 @@
 //작성자(input), 일기 본문(textarea), 감정점수(select), 저장하기(button)의 기본 폼
 import { useState, useRef } from "react";
 
-const DiaryEditor = ({ onCreate }) => {
+
+
+const DiaryEditor = ({onAdd}) => {
+
+//작성자,일기본문,감정점수를 저장할 객체
   const [state, setState] = useState({
     author: "",
     content: "",
     emotion: 1,
-  }); //작성자,일기본문,감정점수 초기화
+  }); 
 
   //불필요한 렌더링 제거
   const authorInput = useRef("");
   const contentInput = useRef("");
+/*   const emotionInput = useRef("");
+  const created_dateInput = useRef(""); */
 
+  //입력창에 값이 변할 때마다 자동저장
   const handleChangeState = (e) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
+   // console.log(state);
+   // console.log(e.target.name);
   }; //handleChangeState end
+  
+  //입력버튼 클릭 이벤트핸들러 
 
-  const handleSubmit = () => {
-    if (state.author.length < 1) {
+
+  
+/*   const handleSubmit = (e) => { */
+  
+   /*  console.log("저장버튼 클릭");
+    add(state);
+    
+   setState({...state}); */
+    
+  /*   fetch("http://localhost:8080/api/diary",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"  
+      },
+      body:JSON.stringify(state)
+    }) */
+    /* .then(res=>res.json())
+    .then(json=>{
+      setState(json);
+    })
+ */
+
+/*      if (state.author.length < 1) {
       authorInput.current.focus();
       //alert("작성자는 최소 1글자 이상 입력");
       //focus
@@ -44,9 +76,12 @@ const DiaryEditor = ({ onCreate }) => {
       author: "",
       content: "",
       emotion: 1,
-    });
-  }; //handleSubmit end
-
+    }); */
+  //}; //handleSubmit end
+    const addClickSubmit=e=>{
+      onAdd(state);
+  };
+  
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
@@ -92,7 +127,7 @@ const DiaryEditor = ({ onCreate }) => {
         </select>
         <span className="notification">감정 점수를 선택하세요 (택 1)</span>
       </div>
-      <button onClick={handleSubmit}>일기 저장하기</button>
+      <button onClick={addClickSubmit}>일기 저장하기</button>
     </div>
   );
 }; //DiaryEditor end
