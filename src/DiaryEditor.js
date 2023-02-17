@@ -1,7 +1,6 @@
 //작성자(input), 일기 본문(textarea), 감정점수(select), 저장하기(button)의 기본 폼
 import { useState, useRef } from "react";
-
-
+/* import { FiAlertCircle } from "react-icons/fi"; */
 
 const DiaryEditor = ({onAdd}) => {
 
@@ -119,11 +118,11 @@ const DiaryEditor = ({onAdd}) => {
           value={state.emotion}
           onChange={handleChangeState}
         >
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
+        <option value={`\u{1F601}`}>{`\u{1F601}`}</option>
+          <option value={2}>{`\u{1F60B}`}</option>
+          <option value={3}>{`\u{1F60D}`}</option>
+          <option value={4}>{`\u{1F616}`}</option>
+          <option value={5}>{`\u{1F621}`}</option>
         </select>
         <span className="notification">감정 점수를 선택하세요 (택 1)</span>
       </div>

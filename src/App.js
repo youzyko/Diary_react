@@ -25,24 +25,6 @@ function App() {
     setData([newItem, ...data]); //최신.ver 제일 위로
   }; //onCreate end
  */
-  //삭제
-  const onDelete = (targetId) => {
-    console.log(`${targetId}가 삭제되었습니다`);
-    const newDiaryList = data.filter((it) => it.id !== targetId);
-    setData(newDiaryList);
-  }; //onDelete
-
-  //수정
-  const onEdit = (targetId, newContent) => {
-    //새로운 데이터로 수정
-    setData(
-      data.map(
-        (it) =>
-          it.id === targetId ? { ...it, content: newContent } : { ...it }
-        //수정된 배열로 교체
-      )
-    );
-  }; //onEdit end
 
   //DiaryEditor에게 전달하는 함수
   //새로운 일기 추가
@@ -86,19 +68,62 @@ function App() {
     })
     .then(res => res.json())
     .then(json=>{
-      setData(json);
+      setData(json); // DiaryEditor onAdd 함수 state=diary =>json 형식으로 setData에 담김
     }) ;  
 
 
   }; //onCreate end
-
+ //삭제
+ const onDelete = (targetId) => {
+  fetch('http://localhost:8080/api/diary'+`/${targetId}`,{
+    method:"DELETE",
+    headers:{
+      "Content-Type":"application/json"
+    },
+  })
+  .then(res=>res.json())  // 파라미터 (res) return res.json()과 같은 말 
+  .then(json=>{
+    setData(json)
+    //setData()
+  })
+ /*  console.log(`${targetId}가 삭제되었습니다`);
+  const newDiaryList = data.filter((it) => it.id !== targetId);
+  setData(newDiaryList); */
+}; //onDelete
 /*   const diaryList=data.map(item=>
     <DiaryList key={item.id} {...item}/>
   )//diaryList={diaryList}
  */
+  //수정
+  const onEdit = (item) => { //targetId, newContent
+    console.log(item);
+    fetch('http://localhost:8080/api/diary',{
+      method: 'PUT',
+      headers:{
+        'Content-type': 'application/json'
+      },
+      body:JSON.stringify(item) //List형
+    
+    })
+    // 파라미터 (res) return res.json()과 같은 말 
+    
+  };
+  //onEdit end
+
+    //새로운 데이터로 수정
+  /*   setData(
+      data.map(
+        (it) =>
+          it.id === targetId ? { ...it, content: newContent } : { ...it }
+        //수정된 배열로 교체
+      )
+    ); */
+
+    
 
   const diarys = data.map((item) => 
-  <DiaryList diary={item} onDelete={onDelete} onEdit={onEdit}/>); 
+  <DiaryList diary={item} Delete={onDelete} Edit={onEdit}/>);  //onDelete라는 함수 이름이 targetId 
+  //호출시에는 targetId.~~~라고 해야함
 
   return (
     <div className="App">

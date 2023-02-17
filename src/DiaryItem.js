@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 const DiaryItem = ({
-  onDelete,
+  targetId,
   onEdit,
   id,
   author,
@@ -10,6 +10,9 @@ const DiaryItem = ({
 }) => {
   //수정 중인지 여부 버튼기능...true=수정취소,완료 버튼 ...false 수정하기,삭제하기 버튼
   const [isEdit, setIsEdit] = useState(false);
+  
+  //삭제 후 내용
+  const [remove,setRemove]=useState([]); //null값
 
   //수정하기버튼을 클릭할시 isEdit=true값으로 변함...수정취소/완료
   const toggleIsEdit = () => setIsEdit(!isEdit);
@@ -21,11 +24,13 @@ const DiaryItem = ({
   const localContentInput = useRef();
 
   //삭제
-  const handleRemove = () => {
-    if (window.confirm(`${id}번째 일기를 삭제하시겠습니까?`)) {
-      onDelete(id);
-    }
-  }; //handleRemove end
+ const handleRemove = e => {
+    alert(`일기를 삭제하시겠습니까?`);
+    targetId(remove);
+    // setRemove(...remove);
+   /*   if (window.confirm(`${id}번째 일기를 삭제하시겠습니까?`)) {
+      onDelete(id); */
+  }; 
 
   //수정상태에서 나갈때 일어나는 함수
   const handleQuitEdit = () => {
@@ -86,4 +91,5 @@ const DiaryItem = ({
     </div>
   );
 };
+
 export default DiaryItem;
