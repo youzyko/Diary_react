@@ -2,19 +2,18 @@
 import { useState, useRef } from "react";
 /* import { FiAlertCircle } from "react-icons/fi"; */
 
-const DiaryEditor = ({onAdd}) => {
-
-//작성자,일기본문,감정점수를 저장할 객체
+const DiaryEditor = ({ onAdd }) => {
+  //작성자,일기본문,감정점수를 저장할 객체
   const [state, setState] = useState({
     author: "",
     content: "",
-    emotion: 1,
-  }); 
+    emotion: "😀",
+  });
 
   //불필요한 렌더링 제거
   const authorInput = useRef("");
   const contentInput = useRef("");
-/*   const emotionInput = useRef("");
+  /*   const emotionInput = useRef("");
   const created_dateInput = useRef(""); */
 
   //입력창에 값이 변할 때마다 자동저장
@@ -23,21 +22,17 @@ const DiaryEditor = ({onAdd}) => {
       ...state,
       [e.target.name]: e.target.value,
     });
-   // console.log(state);
-   // console.log(e.target.name);
   }; //handleChangeState end
-  
-  //입력버튼 클릭 이벤트핸들러 
 
+  //입력버튼 클릭 이벤트핸들러
 
-  
-/*   const handleSubmit = (e) => { */
-  
-   /*  console.log("저장버튼 클릭");
+  /*   const handleSubmit = (e) => { */
+
+  /*  console.log("저장버튼 클릭");
     add(state);
     
    setState({...state}); */
-    
+
   /*   fetch("http://localhost:8080/api/diary",{
       method:"POST",
       headers:{
@@ -45,13 +40,13 @@ const DiaryEditor = ({onAdd}) => {
       },
       body:JSON.stringify(state)
     }) */
-    /* .then(res=>res.json())
+  /* .then(res=>res.json())
     .then(json=>{
       setState(json);
     })
  */
 
-/*      if (state.author.length < 1) {
+  /*      if (state.author.length < 1) {
       authorInput.current.focus();
       //alert("작성자는 최소 1글자 이상 입력");
       //focus
@@ -77,10 +72,17 @@ const DiaryEditor = ({onAdd}) => {
       emotion: 1,
     }); */
   //}; //handleSubmit end
-    const addClickSubmit=e=>{
-      onAdd(state);
+  const addClickSubmit = (e) => {
+    onAdd(state);
+    setState({
+      author: "",
+      content: "",
+      emotion: "😀",
+    });
+
+    return state.replaceAll("<br>", "\r\n"); //엔터 클릭시 줄바꿈
   };
-  
+
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
@@ -89,7 +91,7 @@ const DiaryEditor = ({onAdd}) => {
           name="author"
           value={state.author}
           onChange={handleChangeState}
-          placeholder="작성자"
+          placeholder="일기제목"
           type="text"
           ref={authorInput}
         />
@@ -118,11 +120,11 @@ const DiaryEditor = ({onAdd}) => {
           value={state.emotion}
           onChange={handleChangeState}
         >
-        <option value={`\u{1F601}`}>{`\u{1F601}`}</option>
-          <option value={2}>{`\u{1F60B}`}</option>
-          <option value={3}>{`\u{1F60D}`}</option>
-          <option value={4}>{`\u{1F616}`}</option>
-          <option value={5}>{`\u{1F621}`}</option>
+          <option value="😀">😀</option>
+          <option value="😝">😝</option>
+          <option value="😡">😡</option>
+          <option value="🤯">🤯</option>
+          <option value="🥳">🥳</option>
         </select>
         <span className="notification">감정 점수를 선택하세요 (택 1)</span>
       </div>
