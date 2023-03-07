@@ -24,68 +24,36 @@ const DiaryEditor = ({ onAdd }) => {
     });
   }; //handleChangeState end
 
-  //입력버튼 클릭 이벤트핸들러
 
-  /*   const handleSubmit = (e) => { */
-
-  /*  console.log("저장버튼 클릭");
-    add(state);
-    
-   setState({...state}); */
-
-  /*   fetch("http://localhost:8080/api/diary",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"  
-      },
-      body:JSON.stringify(state)
-    }) */
-  /* .then(res=>res.json())
-    .then(json=>{
-      setState(json);
-    })
- */
-
-  /*      if (state.author.length < 1) {
-      authorInput.current.focus();
-      //alert("작성자는 최소 1글자 이상 입력");
-      //focus
-
-      return;
-    }
-    if (state.content.length < 5) {
-      contentInput.current.focus();
-      //alert("본문은 최소 5글자 이상으로 입력해주세요");
-      //focus
-      contentInput.current.focus();
-      return;
-    }
-    // console.log(state);
-    //prop로 받아온 onCreate 출력
-    onCreate(state.author, state.content, state.emotion);
-    alert("저장성공!");
-
-    //저장 후 작성폼을 초기화
-    setState({
-      author: "",
-      content: "",
-      emotion: 1,
-    }); */
-  //}; //handleSubmit end
   const addClickSubmit = (e) => {
+    e.preventDefault();
+    const { author, content } = state;
+
+    const wordRegex = /^[^\s]+$/; //빈칸빼고 모든 문자가능 
+
+    if (!wordRegex.test(author) || !wordRegex.test(content)) {
+      alert("제목/내용은 필수 입력사항입니다.");
+      return;
+    }
+  
     onAdd(state);
+    alert("저장완료");
+
     setState({
       author: "",
       content: "",
       emotion: "😀",
     });
 
-    return state.replaceAll("<br>", "\r\n"); //엔터 클릭시 줄바꿈
+   // return state.replaceAll("<br>", "\r\n"); //엔터 클릭시 줄바꿈
   };
+
 
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
+      
+      <form onSubmit={addClickSubmit} name="frm">
       <div>
         <input
           name="author"
@@ -94,11 +62,15 @@ const DiaryEditor = ({ onAdd }) => {
           placeholder="일기제목"
           type="text"
           ref={authorInput}
+     
+        /*   required={checkpoint} */
         />
-        <span className="notification">
-          작성자명을 입력하세요 (최소 1글자 이상)
-        </span>
+       
+      {/*   <span className="notification">
+         {notification}
+        </span> */}
       </div>
+
       <div>
         <textarea
           name="content"
@@ -107,11 +79,18 @@ const DiaryEditor = ({ onAdd }) => {
           placeholder="일기본문"
           type="text"
           ref={contentInput}
+          
         />
         <span className="notification">
           일기 본문을 입력하세요 (최소 5글자 이상)
         </span>
       </div>
+      
+
+
+      </form>
+     
+      
       <span>오늘의 감정점수: </span>
 
       <div>
@@ -128,8 +107,10 @@ const DiaryEditor = ({ onAdd }) => {
         </select>
         <span className="notification">감정 점수를 선택하세요 (택 1)</span>
       </div>
-      <button onClick={addClickSubmit}>일기 저장하기</button>
+     <button onClick={addClickSubmit}>일기 저장하기</button> 
+
     </div>
+   
   );
 }; //DiaryEditor end
 export default DiaryEditor;

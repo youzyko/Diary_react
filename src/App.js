@@ -13,8 +13,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   //새로 작성되는 일기 데이터 저장
-  const [data, setData] = useState();
+  const [data, setData] = useState({diarys:[]}); 
+  //before: const [data, setData] = useState();...배열로 카운트 불가 
+ 
 
+ 
   //고유한 id 생성 +0번부터 index 시작
   //const dataId = useState(1);
 
@@ -151,15 +154,15 @@ function App() {
       body: JSON.stringify(item), //List형
     });
     // 파라미터 (res) return res.json()과 같은 말
+
   };
   //onEdit end
 
-/*  const diarys = data.map(item => (
-    <DiaryList key={item.id} diary={item} Delete={onDelete} Edit={onEdit} />
-  ))  */
-   //onDelete라는 함수 이름이 targetId
+
+
+  //onDelete라는 함수 이름이 targetId
   //호출시에는 targetId.~~~라고 해야함
- /*  const diary=data.diarys.map(item=>{
+  /*  const diary=data.diarys.map(item=>{
     <DiaryList key={item.ACCESS_TOKEN} diary={item} Delete={onDelete} Edit={onEdit}></DiaryList>
   })
   const viewPage=(
@@ -174,9 +177,9 @@ function App() {
   return (
     <div className="App">
       <DiaryEditor onAdd={onAdd} />
-{/*       <h3>{diarys.length}개의 일기가 있습니다</h3> */}
-      <h2>일기리스트</h2>
-{/*       {diarys} */}
+      {/*       <h3>{diarys.length}개의 일기가 있습니다</h3> */}
+    <h2>{data.diarys.length}개의 일기리스트</h2> 
+      {/*       {diarys} */}
 
       {/*     방법1
       <div className="diarys">
@@ -184,12 +187,23 @@ function App() {
           return <p> <DiaryList diary={item} Delete={onDelete} Edit={onEdit} /></p>
         })}
      </div> */}
-<div className="die">
-     {data && data.diarys.map(item =>{
-      return <p><DiaryList key={item.id} diary={item}Delete={onDelete} Edit={onEdit}></DiaryList></p>
-     })}
-</div>
-
+      <div className="die">
+       
+        {data &&
+          data.diarys.map((item) => {
+            return (
+            
+                <DiaryList
+                  key={item.id}
+                  diary={item}
+                  Delete={onDelete}
+                  Edit={onEdit}
+                ></DiaryList>
+            
+            );
+          })}
+   
+      </div>
     </div>
   );
 }

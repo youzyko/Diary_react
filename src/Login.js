@@ -13,8 +13,6 @@ const Login = () => {
     //아이디 입력란,패스워드 데이터 가져옴
     const $id = document.getElementById("id");
     const $pwd = document.getElementById("pwd");
-    const username=document.getElementById("username");
-
 
     fetch(`${API_BASE_URL}/auth/signin`, {
       method: "POST",
@@ -23,26 +21,29 @@ const Login = () => {
         //json형식으로 넘겨주겠다.
         id: $id.value,
         pwd: $pwd.value,
-        username:username.value
-      
+        /* username: $username.value */
       }),
     })
       .then((res) => {
-       // console.log("res.json==>" + res.json);
+        // console.log("res.json==>" + res.json);
         return res.json();
       })
       .then((loginUserData) => {
-      //  console.log("==>loginUserData" + loginUserData);
+        //  console.log("==>loginUserData" + loginUserData);
         if (loginUserData.message) {
-         // console.log("로그인에 실패하셨습니다.");
+          // console.log("로그인에 실패하셨습니다.");
           alert(loginUserData.message);
         } else {
-          localStorage.setItem('ACCESS_TOKEN', loginUserData.token);
-          localStorage.setItem('LOGIN_USERNAME', loginUserData.username);
-        
+          localStorage.setItem("ACCESS_TOKEN", loginUserData.token);
+          localStorage.setItem("LOGIN_ID", loginUserData.id);
+
           // 할일 목록 보여주기
           window.location.href = "/";
         }
+      })
+      // 서버가 200번이아닌 오류코드를 보낼경우 실행할 코드
+      .catch((err) => {
+        console.log("err:", err.message);
       });
   };
 

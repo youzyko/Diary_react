@@ -79,8 +79,8 @@ const DiaryList = ({ diary, Delete, Edit }) => {
 
         <div>
           변경 할 감정:
-          <select onChange={emotionChange}>
-            <option value="none" selected>===select===</option>
+          <select onChange={emotionChange} defaultValue="===select===">
+            <option value="none" >===select===</option>
  
      <option value="😀">😀</option>
           <option value="😝">😝</option>
