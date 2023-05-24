@@ -1,10 +1,21 @@
-# Getting Started with Create React App
+# 개인 다이어리
 
 ![image](https://github.com/youzyko/Diary_react/assets/113401834/28d09c1b-2e36-4e61-ae6e-6efa106169be)
 
-## Available Scripts
+### 회원가입
 
-In the project directory, you can run:
+![image](https://github.com/youzyko/Diary_react/assets/113401834/acf9c098-d83c-4f2b-afbe-b68abf84f5b0)
+
+### 회원가입_정해진 형식에 맞지 않을때
+![image](https://github.com/youzyko/Diary_react/assets/113401834/481e079d-f6c6-4865-abcb-b9c16ecd1946)
+
+### 회원가입_정해진 형식에 부합
+![image](https://github.com/youzyko/Diary_react/assets/113401834/0619bea3-bb20-45d1-9ff7-87c7201d5492)
+
+![image](https://github.com/youzyko/Diary_react/assets/113401834/3be927dc-e9ad-4645-a6bb-8a8956bf12ee)
+
+
+
 
 ### `npm start`
 
