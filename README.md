@@ -21,6 +21,11 @@
 ### 일기 저장후(감정/일기내용_수정가능_내용에 빈칸까지 포함되게 기능 구현)
 ![image](https://github.com/youzyko/Diary_react/assets/113401834/aab55781-c1ce-41b7-b4b8-85ff583289ba)
 
+### DB_회원정보(MSSQL)
+![image](https://github.com/youzyko/Diary_react/assets/113401834/327ef998-5bdc-405c-a5ff-3c6d1c481c15)
+
+### DB_회원에 따른 다이어리 (MSSQL)
+![image](https://github.com/youzyko/Diary_react/assets/113401834/13595978-502c-42c8-9190-5c387d643e94)
 
 
 ### `npm start`
