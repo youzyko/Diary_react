@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![image](https://github.com/youzyko/Diary_react/assets/113401834/28d09c1b-2e36-4e61-ae6e-6efa106169be)
 
 ## Available Scripts
 
